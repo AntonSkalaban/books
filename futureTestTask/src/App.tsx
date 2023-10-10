@@ -1,11 +1,10 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { Layout } from './components'
-import { About, Main } from './pages'
-import './App.css'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './components';
+import { About, Main } from './pages';
+import './App.css';
 
-export const  App = () => {
-
+export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -13,7 +12,7 @@ export const  App = () => {
         <Route path="about/:id" element={<About />} />
       </Route>
     </Routes>
-  )
-}
+  );
+};
 
-export default App
+export default App;

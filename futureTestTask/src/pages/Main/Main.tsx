@@ -1,9 +1,11 @@
 import React from 'react';
-import { bookAPI } from 'services/api';
+import { CardList } from './CardList/CardList';
 import './style.css';
 
 export const Main = () => {
-  const { data, isError, isFetching } = bookAPI.useGetBooksQuery();
-  console.log(data, isFetching, isError);
-  return <div className="page">Main</div>;
+  return (
+    <div className="page main-page">
+      <CardList />
+    </div>
+  );
 };

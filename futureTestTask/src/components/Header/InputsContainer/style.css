@@ -1,0 +1,18 @@
+
+
+.inputs-container {
+    width: 100%;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}   
+

@@ -8,7 +8,8 @@ export const bookAPI = createApi({
   }),
   endpoints: (build) => ({
     getBooks: build.query<Respone, void>({
-      query: (params) => `/volumes?q=intitle:${params}&key=${import.meta.env.VITE_API_KEY}`,
+      query: (params) =>
+        `/volumes?q=intitle:'Harry Potter'+subject:&key=${import.meta.env.VITE_API_KEY}`,
     }),
   }),
 });

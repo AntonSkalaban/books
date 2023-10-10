@@ -16,10 +16,10 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="header__search-bar">
+    <div className="header__searchbar header__input-container">
       <input
         type="text"
-        className="header__input input"
+        className="searchbar__input input"
         placeholder="Search..."
         value={value}
         onChange={handleChange}
