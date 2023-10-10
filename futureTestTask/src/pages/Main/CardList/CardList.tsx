@@ -1,35 +1,34 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { bookAPI } from 'services/api';
+import { getFilterValues } from 'store/selectors';
 import { Card } from './Card/Card';
 import './style.css';
 
 export const CardList = () => {
-  const { data, isError, isFetching } = bookAPI.useGetBooksQuery();
+  const filterValues = useSelector(getFilterValues);
 
-  if (isFetching && !data?.items.length) return <p>Loading...</p>;
+  const { data, isError, isFetching } = bookAPI.useGetBooksQuery(filterValues);
+
+  if (isFetching) return <p>Loading...</p>;
   if (isError) return <p>Error...</p>;
-  if (!data?.items.length) return <p>Not found</p>;
+  if (!data?.totalItems) return <p>Not found</p>;
 
   return (
     <>
       <p className="card-list__total">Books found {data.totalItems}</p>
       <div className="card-list">
-        {data.items.map(({ id, volumeInfo }) => {
-          const {
-            title,
-            authors,
-            categories,
-            imageLinks: { smallThumbnail },
-          } = volumeInfo;
+        {data.items.map(({ id, volumeInfo }, index) => {
+          const { title, authors, categories, imageLinks } = volumeInfo;
 
           return (
             <Card
-              key={id}
+              key={`${id}-${index}`} //Иногда сервер возвращает 2 одинаковые книги (Например: 'java')
               id={id}
               title={title}
               authors={authors}
               categories={categories}
-              img={smallThumbnail}
+              img={imageLinks?.smallThumbnail}
             />
           );
         })}

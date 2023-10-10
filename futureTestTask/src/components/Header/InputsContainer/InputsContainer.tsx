@@ -1,4 +1,5 @@
 import React from 'react';
+import { FilterValuesNames } from 'store/slice';
 import { SearchBar } from './SearchBar/SearchBar';
 import { FilterInput } from './FilterInput/FilterInput';
 import { categories, order } from './const';
@@ -10,8 +11,8 @@ export const InputsContainer = () => {
       <SearchBar />
       <div className="filter-container">
         {' '}
-        <FilterInput title={'Categories'} options={categories} />
-        <FilterInput title={'Sorting by'} options={order} />
+        <FilterInput title={'Categories'} options={categories} name={FilterValuesNames.Category} />
+        <FilterInput title={'Sorting by'} options={order} name={FilterValuesNames.SortBy} />
       </div>
     </div>
   );
