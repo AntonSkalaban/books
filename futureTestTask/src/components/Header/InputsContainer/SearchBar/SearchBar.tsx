@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FilterValuesNames, changeFilterValues } from 'store/slice';
+import { FilterNames, changeFilterValues } from 'store/slice';
 import Search from 'assets/search.svg';
 import './style.css';
 
@@ -11,8 +11,7 @@ export const SearchBar = () => {
   const handleSearch = () => {
     dispatch(
       changeFilterValues({
-        [FilterValuesNames.Title]: value,
-        [FilterValuesNames.Page]: 0,
+        [FilterNames.Title]: value,
       })
     );
   };

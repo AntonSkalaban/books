@@ -1,29 +1,28 @@
 import React from 'react';
 import './style.css';
 import { useDispatch } from 'react-redux';
-import { FilterValuesNames, changeFilterValues } from 'store/slice';
+import { changeFilterValues } from 'store/slice';
 
 interface FilterInputProps {
   name: string;
-  title: string;
+  label: string;
   options: string[];
 }
 
-export const FilterInput: React.FC<FilterInputProps> = ({ title, options, name }) => {
+export const FilterInput: React.FC<FilterInputProps> = ({ label, options, name }) => {
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(
       changeFilterValues({
         [name]: e.target.value,
-        [FilterValuesNames.Page]: 0,
       })
     );
   };
 
   return (
     <div className="header__filter header__input-container">
-      <label className="header__filter__label">{title}</label>
+      <label className="header__filter__label">{label}</label>
       <select
         className="header__filter-input"
         name={name}

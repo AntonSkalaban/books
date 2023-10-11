@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookAPI } from 'services/api';
-import { FilterValuesNames, addBooks, changeFilterValues } from 'store/slice';
+import { FilterNames, changeFilterValues } from 'store/slice';
 import { getBooks, getFilterValues } from 'store/selectors';
 import { Card } from './Card/Card';
 import './style.css';
@@ -13,10 +13,13 @@ export const CardList = () => {
 
   const { data, isError, isFetching } = bookAPI.useGetBooksQuery(filterValues);
 
-  useEffect(() => {
-    if (isFetching || isError || !data?.items || !data?.items.length) return;
-    dispatch(addBooks(data.items));
-  }, [data?.items, dispatch, isError, isFetching]);
+  const handleLoadMore = () => {
+    dispatch(
+      changeFilterValues({
+        [FilterNames.Page]: filterValues[FilterNames.Page] + 1,
+      })
+    );
+  };
 
   if (isFetching && !data) return <p>Loading...</p>;
   if (isError) return <p>Error...</p>;
@@ -41,21 +44,7 @@ export const CardList = () => {
           );
         })}
       </div>
-      {!isFetching ? (
-        <button
-          onClick={() =>
-            dispatch(
-              changeFilterValues({
-                [FilterValuesNames.Page]: filterValues[FilterValuesNames.Page] + 1,
-              })
-            )
-          }
-        >
-          load more
-        </button>
-      ) : (
-        <p>Loading...</p>
-      )}
+      {!isFetching ? <button onClick={handleLoadMore}>Load more</button> : <p>Loading...</p>}
     </>
   );
 };

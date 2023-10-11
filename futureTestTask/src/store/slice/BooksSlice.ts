@@ -1,20 +1,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Book } from 'types/types';
+import { FilterNames, changeFilterValues } from './FilterSlice';
+import { bookAPI } from 'services/api';
+import { Book, Respone } from 'types/types';
 
 export const BooksSlice = createSlice({
   name: 'books',
   initialState: [] as Book[],
-  reducers: {
-    addBooks: (state, action: PayloadAction<Book[]>) => {
-      return [...state, ...action.payload];
-    },
-
-    deleteBooks: () => {
-      return [];
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(changeFilterValues, (_state, { payload }) => {
+      if (Object.keys(payload)[0] !== FilterNames.Page) return [];
+    }),
+      builder.addMatcher(
+        bookAPI.endpoints.getBooks.matchFulfilled,
+        (state, { payload }: PayloadAction<Respone>) => {
+          if (payload.totalItems) return [...state, ...payload.items];
+        }
+      );
   },
 });
-
-export const { addBooks, deleteBooks } = BooksSlice.actions;
 
 export default BooksSlice.reducer;
