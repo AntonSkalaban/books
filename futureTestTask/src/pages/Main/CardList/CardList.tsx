@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookAPI } from 'services/api';
-import { getFilterValues } from 'store/selectors';
+import { FilterValuesNames, addBooks, changeFilterValues } from 'store/slice';
+import { getBooks, getFilterValues } from 'store/selectors';
 import { Card } from './Card/Card';
 import './style.css';
-import { FilterValuesNames, changeFilterValues } from 'store/slice';
-import { Book } from 'types/types';
 
 export const CardList = () => {
-  const filterValues = useSelector(getFilterValues);
-
   const dispatch = useDispatch();
+  const filterValues = useSelector(getFilterValues);
+  const books = useSelector(getBooks);
+
   const { data, isError, isFetching } = bookAPI.useGetBooksQuery(filterValues);
 
-  const [books, setBooks] = useState([] as Book[]);
-
   useEffect(() => {
-    if (isFetching || isError || !data?.totalItems) return;
-    setBooks((prev) => [...prev, ...data?.items]);
-  }, [data?.items, data?.totalItems, isError, isFetching]);
+    if (isFetching || isError || !data?.items || !data?.items.length) return;
+    dispatch(addBooks(data.items));
+  }, [data?.items, dispatch, isError, isFetching]);
 
   if (isFetching && !data) return <p>Loading...</p>;
   if (isError) return <p>Error...</p>;

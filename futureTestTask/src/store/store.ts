@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { bookAPI } from 'services/api';
-import { FilterSlice } from './slice';
+import { BooksSlice, FilterSlice } from './slice';
 
 export const store = configureStore({
   reducer: {
     filterValues: FilterSlice,
+    books: BooksSlice,
     [bookAPI.reducerPath]: bookAPI.reducer,
   },
   middleware: (getDefaultMiddleware) => {
