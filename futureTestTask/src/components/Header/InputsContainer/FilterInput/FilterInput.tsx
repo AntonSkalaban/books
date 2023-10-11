@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { useDispatch } from 'react-redux';
-import { changeFilterValues } from 'store/slice';
+import { FilterValuesNames, changeFilterValues } from 'store/slice';
 
 interface FilterInputProps {
   name: string;
@@ -11,8 +11,14 @@ interface FilterInputProps {
 
 export const FilterInput: React.FC<FilterInputProps> = ({ title, options, name }) => {
   const dispatch = useDispatch();
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(changeFilterValues({ [name]: e.target.value }));
+    dispatch(
+      changeFilterValues({
+        [name]: e.target.value,
+        [FilterValuesNames.Page]: 0,
+      })
+    );
   };
 
   return (

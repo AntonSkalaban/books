@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterValuesNames, changeFilterValues } from 'store/slice';
-import Search from '../../../../assets/search.svg';
+import Search from 'assets/search.svg';
 import './style.css';
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
 
-  const findBook = () => {
-    dispatch(changeFilterValues({ [FilterValuesNames.Title]: value }));
+  const handleSearch = () => {
+    dispatch(
+      changeFilterValues({
+        [FilterValuesNames.Title]: value,
+        [FilterValuesNames.Page]: 0,
+      })
+    );
   };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -18,7 +23,7 @@ export const SearchBar = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-    if (e.key === 'Enter') findBook();
+    if (e.key === 'Enter') handleSearch();
   };
 
   return (
@@ -31,7 +36,7 @@ export const SearchBar = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <button className="header__input-btn" onClick={findBook}>
+      <button className="header__input-btn" onClick={handleSearch}>
         {' '}
         Find
         <img src={Search} className="header__input-icon" />
