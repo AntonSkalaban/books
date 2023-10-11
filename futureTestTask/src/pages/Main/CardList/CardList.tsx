@@ -4,6 +4,7 @@ import { bookAPI } from 'services/api';
 import { FilterNames, changeFilterValues } from 'store/slice';
 import { getBooks, getFilterValues } from 'store/selectors';
 import { Card } from './Card/Card';
+import { LoadingSpinner } from 'components/UI';
 import './style.css';
 
 export const CardList = () => {
@@ -21,7 +22,7 @@ export const CardList = () => {
     );
   };
 
-  if (isFetching && !data) return <p>Loading...</p>;
+  if (isFetching && !data) return <LoadingSpinner />;
   if (isError) return <p>Error...</p>;
   if (!data?.totalItems) return <p>Not found</p>;
 
@@ -44,7 +45,13 @@ export const CardList = () => {
           );
         })}
       </div>
-      {!isFetching ? <button onClick={handleLoadMore}>Load more</button> : <p>Loading...</p>}
+      {!isFetching ? (
+        <button className="card-list__btn btn" onClick={handleLoadMore}>
+          Load more
+        </button>
+      ) : (
+        <LoadingSpinner />
+      )}
     </>
   );
 };

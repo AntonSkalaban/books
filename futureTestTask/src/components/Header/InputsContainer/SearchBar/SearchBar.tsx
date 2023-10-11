@@ -35,10 +35,8 @@ export const SearchBar = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <button className="header__input-btn" onClick={handleSearch}>
-        {' '}
-        Find
-        <img src={Search} className="header__input-icon" />
+      <button className="header__input-btn btn" onClick={handleSearch}>
+        Find <img src={Search} className="header__input-icon" />
       </button>
     </div>
   );

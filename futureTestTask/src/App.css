@@ -6,3 +6,16 @@ body {
     font-weight: 400;
     color: #2d2d2d;
 }
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
