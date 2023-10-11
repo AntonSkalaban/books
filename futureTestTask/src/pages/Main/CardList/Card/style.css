@@ -6,6 +6,11 @@
 
     padding: 5px;
 }
+
+.card__link {
+    width: 100%;
+    color:black;
+}
 .card__img-container {
     width: 100%;
     height: 270px;
@@ -22,8 +27,10 @@
 
 .card__category {
    font-weight: 200;
+
+   margin-bottom: 5px;
 } 
 
 .card__author {
-    color: gray
+    color: gray;
 } 

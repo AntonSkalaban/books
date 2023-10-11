@@ -12,7 +12,7 @@ export const bookAPI = createApi({
       query: (params) => {
         const itemsPerPage = 30;
         return {
-          url: `/volumes`,
+          url: `/`,
           params: {
             q: `intitle:${params[FilterNames.Title]}+subject:${params[FilterNames.Category]}`,
             orderBy: params[FilterNames.SortBy],
@@ -22,6 +22,9 @@ export const bookAPI = createApi({
           },
         };
       },
+    }),
+    getBook: build.query<Respone, string>({
+      query: (id) => id,
     }),
   }),
 });
