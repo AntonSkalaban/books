@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { bookAPI } from 'services/api';
+import { сhangeTextLayout } from 'helpers/сhangeTextLayout';
 import { LoadingSpinner } from 'components/UI';
 import './style.css';
 
@@ -17,14 +18,17 @@ export const About = () => {
   return (
     <div className="page about">
       <div className="about__img-container book-container">
-        <img className="about__img" src={imageLinks.large} />
+        {imageLinks?.large && <img className="about__img" src={imageLinks.large} />}
       </div>
       <div className="about__info-container book-container">
         {title && <h3 className="about__title">{title}</h3>}
         {authors && <p className="about__author author-text">{authors.join(', ')}</p>}
         {categories && <p className="about__category category-text">{categories.join(', ')}</p>}
         {description && (
-          <div className="about__description" dangerouslySetInnerHTML={{ __html: description }} />
+          <div
+            className="about__description"
+            dangerouslySetInnerHTML={{ __html: сhangeTextLayout(description) }}
+          />
         )}
       </div>
     </div>
