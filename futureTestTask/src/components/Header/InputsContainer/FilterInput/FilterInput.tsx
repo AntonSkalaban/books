@@ -22,7 +22,7 @@ export const FilterInput: React.FC<FilterInputProps> = ({ label, options, name }
 
   return (
     <div className="header__filter header__input-container">
-      <label className="header__filter__label">{label}</label>
+      <label className="header__filter-label">{label}</label>
       <select
         className="header__filter-input"
         name={name}

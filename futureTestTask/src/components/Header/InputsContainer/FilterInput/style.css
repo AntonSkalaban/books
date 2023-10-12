@@ -9,3 +9,8 @@
 .header__filter-input {
     height: 100%;
 }
+
+.header__filter-label{
+    font-size: 16px;
+    font-weight: 600;
+}

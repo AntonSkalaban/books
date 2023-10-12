@@ -1,5 +1,29 @@
 .header {
+    width: 100%;
     height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: no-repeat url(https://99px.ru/sstorage/53/2013/09/tmb_83602_7365.jpg);
+    background-size: cover;
+
+    color: #fff;
+
+    position: relative;
+
+    margin-bottom: 20px;
+}
+
+.header__wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 1;
 }
 
 .header__input-container {
@@ -15,4 +39,5 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
 }
