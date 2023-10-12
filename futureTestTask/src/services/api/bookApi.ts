@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { FilterValues, FilterNames } from 'store/slice';
-import { Respone } from 'types/types';
+import { Book, Respone } from 'types/types';
 
 export const bookAPI = createApi({
   reducerPath: 'bookAPI',
@@ -23,7 +23,7 @@ export const bookAPI = createApi({
         };
       },
     }),
-    getBook: build.query<Respone, string>({
+    getBook: build.query<Book, string>({
       query: (id) => id,
     }),
   }),

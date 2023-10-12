@@ -23,12 +23,13 @@ export const CardList = () => {
   };
 
   if (isFetching && !data) return <LoadingSpinner />;
-  if (isError) return <p>Error...</p>;
-  if (!data?.totalItems) return <p>Not found</p>;
+  if (isError) return <p className="card-list__text">Error...</p>;
+  if (!data?.totalItems) return <p className="card-list__text">Not found</p>;
 
+  console.log(data);
   return (
     <>
-      <p className="card-list__total">Books found {data.totalItems}</p>
+      <p className="card-list__text">Books found {data.totalItems}</p>
       <div className="card-list">
         {books.map(({ id, volumeInfo }, index) => {
           const { title, authors, categories, imageLinks } = volumeInfo;

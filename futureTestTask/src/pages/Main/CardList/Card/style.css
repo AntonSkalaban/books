@@ -9,6 +9,7 @@
 
 .card__link {
     width: 100%;
+    height: 100%;
     color:black;
 }
 .card__img-container {
@@ -23,14 +24,12 @@
 
 .card__title {
     font-weight: 600;
+    font-size: 16px;
+    line-height: 1.1;
+    margin-bottom: 5px;
 } 
 
 .card__category {
-   font-weight: 200;
-
    margin-bottom: 5px;
 } 
 
-.card__author {
-    color: gray;
-} 

@@ -7,6 +7,9 @@ body {
     color: #2d2d2d;
 }
 
+.page{
+    min-height: calc(100vh - 200px);
+}
 .btn {
     display: flex;
     justify-content: center;
@@ -18,4 +21,12 @@ body {
     text-transform: uppercase;
 
     cursor: pointer;
+}
+
+.category-text {
+    font-weight: 200;
+}
+
+.author-text {
+    color: gray;
 }

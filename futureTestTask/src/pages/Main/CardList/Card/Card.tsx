@@ -25,7 +25,7 @@ export const Card: React.FC<CardProps> = ({ id, title, authors, categories, img 
         </div>
         {categories && <p className="card__category">{categories[0]}</p>}
         <p className="card__title">{title}</p>
-        {authors && <p className="card__author">{authors.join(', ')}</p>}
+        {authors && <p className="card__author author-text">{authors.join(', ')}</p>}
       </NavLink>
     </div>
   );
