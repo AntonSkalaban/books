@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FilterNames } from 'store/slice';
-import { useActions } from 'hooks';
+import { useActions, useChangePage } from 'hooks';
 import Search from 'assets/search.svg';
 import './style.css';
 
@@ -8,11 +8,13 @@ export const SearchBar = () => {
   const [value, setValue] = useState('');
 
   const { changeFilterValues } = useActions();
+  const { changePage } = useChangePage();
 
   const handleSearch = () => {
     changeFilterValues({
       [FilterNames.Title]: value,
     });
+    changePage('/');
   };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {

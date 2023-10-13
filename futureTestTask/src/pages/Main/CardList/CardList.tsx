@@ -13,8 +13,9 @@ export const CardList = () => {
   const filterValues = useSelector(getFilterValues);
 
   const { changeFilterValues } = useActions();
-
-  const { data, isError, isFetching } = bookAPI.useGetBooksQuery(filterValues);
+  const { data, isError, isFetching } = bookAPI.useGetBooksQuery(filterValues, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const handleLoadMore = () => {
     changeFilterValues({
