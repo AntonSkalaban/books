@@ -46,10 +46,13 @@ export const CardList = () => {
           );
         })}
       </div>
+
       {!isFetching ? (
-        <button className="card-list__btn btn" onClick={handleLoadMore}>
-          Load more
-        </button>
+        books.length < data.totalItems && (
+          <button className="card-list__btn btn" onClick={handleLoadMore}>
+            Load more
+          </button>
+        )
       ) : (
         <LoadingSpinner />
       )}
