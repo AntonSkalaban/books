@@ -1,32 +1,31 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { bookAPI } from 'services/api';
-import { FilterNames, changeFilterValues } from 'store/slice';
+import { FilterNames } from 'store/slice';
 import { getBooks, getFilterValues } from 'store/selectors';
+import { useActions } from 'hooks/useActions';
 import { Card } from './Card/Card';
 import { LoadingSpinner } from 'components/UI';
 import './style.css';
 
 export const CardList = () => {
-  const dispatch = useDispatch();
-  const filterValues = useSelector(getFilterValues);
   const books = useSelector(getBooks);
+  const filterValues = useSelector(getFilterValues);
+
+  const { changeFilterValues } = useActions();
 
   const { data, isError, isFetching } = bookAPI.useGetBooksQuery(filterValues);
 
   const handleLoadMore = () => {
-    dispatch(
-      changeFilterValues({
-        [FilterNames.Page]: filterValues[FilterNames.Page] + 1,
-      })
-    );
+    changeFilterValues({
+      [FilterNames.Page]: filterValues[FilterNames.Page] + 1,
+    });
   };
 
   if (isFetching && !data) return <LoadingSpinner />;
   if (isError) return <p className="card-list__text">Error...</p>;
   if (!data?.totalItems) return <p className="card-list__text">Not found</p>;
 
-  console.log(data);
   return (
     <>
       <p className="card-list__text">Books found {data.totalItems}</p>

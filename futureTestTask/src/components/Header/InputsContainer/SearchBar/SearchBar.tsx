@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { FilterNames, changeFilterValues } from 'store/slice';
+import { FilterNames } from 'store/slice';
+import { useActions } from 'hooks';
 import Search from 'assets/search.svg';
 import './style.css';
 
 export const SearchBar = () => {
-  const dispatch = useDispatch();
   const [value, setValue] = useState('');
 
+  const { changeFilterValues } = useActions();
+
   const handleSearch = () => {
-    dispatch(
-      changeFilterValues({
-        [FilterNames.Title]: value,
-      })
-    );
+    changeFilterValues({
+      [FilterNames.Title]: value,
+    });
   };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {

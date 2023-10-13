@@ -1,7 +1,6 @@
 import React from 'react';
+import { useActions } from 'hooks';
 import './style.css';
-import { useDispatch } from 'react-redux';
-import { changeFilterValues } from 'store/slice';
 
 interface FilterInputProps {
   name: string;
@@ -10,14 +9,12 @@ interface FilterInputProps {
 }
 
 export const FilterInput: React.FC<FilterInputProps> = ({ label, options, name }) => {
-  const dispatch = useDispatch();
+  const { changeFilterValues } = useActions();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(
-      changeFilterValues({
-        [name]: e.target.value,
-      })
-    );
+    changeFilterValues({
+      [name]: e.target.value,
+    });
   };
 
   return (
