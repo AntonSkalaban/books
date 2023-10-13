@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FilterNames } from 'store/slice';
+import { getFilterValues } from 'store/selectors';
 import { useActions, useChangePage } from 'hooks';
 import Search from 'assets/search.svg';
 import './style.css';
 
 export const SearchBar = () => {
-  const [value, setValue] = useState('');
+  const searchValue = useSelector(getFilterValues)[FilterNames.Title];
+
+  const [value, setValue] = useState(searchValue);
 
   const { changeFilterValues } = useActions();
   const { changePage } = useChangePage();
 
   const handleSearch = () => {
+    if (searchValue === value) return;
     changeFilterValues({
       [FilterNames.Title]: value,
     });
