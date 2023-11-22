@@ -1,5 +1,5 @@
 import React from 'react';
-import { useActions, useChangePage } from 'hooks';
+import { useActions, useChangeUrlPath } from 'hooks';
 import './style.css';
 
 interface FilterInputProps {
@@ -11,13 +11,13 @@ interface FilterInputProps {
 export const FilterInput: React.FC<FilterInputProps> = ({ label, options, name }) => {
   const { changeFilterValues } = useActions();
 
-  const { changePage } = useChangePage();
+  const { changeUrlPath } = useChangeUrlPath();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     changeFilterValues({
       [name]: e.target.value,
     });
-    changePage('/');
+    changeUrlPath('/');
   };
 
   return (

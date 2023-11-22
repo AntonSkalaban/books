@@ -1,2 +1,2 @@
 export * from './useActions';
-export * from './useChangePage';
+export * from './useChangeUrlPath';

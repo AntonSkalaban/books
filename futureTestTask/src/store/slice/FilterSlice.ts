@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { bookAPI } from 'services/api';
 
 export enum FilterNames {
   Title = 'title',
@@ -28,7 +27,7 @@ export const FilterSlice = createSlice({
   reducers: {
     changeFilterValues: (state, { payload }: PayloadAction<Record<string, string | number>>) => {
       if (Object.keys(payload)[0] === FilterNames.Page) return { ...state, ...payload };
-      return { ...state, ...payload, [FilterNames.Page]: 0 };
+      return { ...state, ...payload };
     },
   },
 });

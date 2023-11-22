@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export const useChangePage = () => {
+export const useChangeUrlPath = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const changePage = (path: string) => {
+  const changeUrlPath = (path: string) => {
     if (location.pathname !== path) navigate(path);
   };
 
-  return { changePage };
+  return { changeUrlPath };
 };
