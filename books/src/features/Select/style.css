@@ -1,0 +1,27 @@
+.header__select {
+    width: 170px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__select-input {
+    height: 100%;
+}
+
+.header__select-label{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (max-width: 400px) {
+    .header__select {
+        justify-content: center;
+    }
+
+    .header__select-label{
+        font-size: 14px;
+        font-weight: 800;
+    }
+}
