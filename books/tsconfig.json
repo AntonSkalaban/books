@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "esnext", "dom.iterable"],
+    "outDir": "dist",
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": "src",
+    "paths": {
+      "app/*": ["app/*"],
+      "shared/*": ["shared/*"],
+      "features/*": ["features/*"],
+      "entities/*": ["entities/*"],
+      "widgets/*": ["widgets/*"],
+      "pages/*": ["pages/*"],
+  },
+},
+  "include": ["src"],
+  
+}
